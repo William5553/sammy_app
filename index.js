@@ -30,10 +30,10 @@ const changeSammy = () => {
             else if (direction == 'forw')
                 currentSammy[part]++;
 
-            if (currentSammy < 0)
-             currentSammy = sammies.length;
-            if (currentSammy >= sammies.length)
-             currentSammy = 0;
+            if (currentSammy[part] < 0)
+             currentSammy[part] = sammies.length;
+            if (currentSammy[part] >= sammies.length)
+             currentSammy[part] = 0;
             changeSammy();
         });
     });
