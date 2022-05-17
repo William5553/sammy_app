@@ -1,11 +1,9 @@
 const sammies = [
     'default',
     'drippy',
-    'construction'
+    'construction',
+    'sales-associate'
 ];
-
-const prev = document.getElementById('arrow-prev');
-const forw = document.getElementById('arrow-forw');
 
 const currentSammy = {
     head: 0,
@@ -32,7 +30,7 @@ const changeSammy = () => {
 
             if (currentSammy[part] < 0)
              currentSammy[part] = sammies.length;
-            if (currentSammy[part] >= sammies.length)
+            if (currentSammy[part] > sammies.length)
              currentSammy[part] = 0;
             changeSammy();
         });
