@@ -29,8 +29,8 @@ const changeSammy = () => {
                 currentSammy[part]++;
 
             if (currentSammy[part] < 0)
-             currentSammy[part] = sammies.length;
-            if (currentSammy[part] > sammies.length)
+             currentSammy[part] = sammies.length - 1;
+            if (currentSammy[part] >= sammies.length)
              currentSammy[part] = 0;
             changeSammy();
         });
