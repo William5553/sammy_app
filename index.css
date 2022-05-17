@@ -40,6 +40,10 @@ body {
             user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+.body-part::selection {
+    background: transparent;
+}
+
 .arrow-left img, .arrow-right img {
     width: 100%;
     height: 100%;

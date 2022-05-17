@@ -3,7 +3,8 @@ const sammies = [
     'drippy',
     'construction',
     'sales-associate',
-    'nurse'
+    'nurse',
+    'scientist'
 ];
 
 const currentSammy = {
