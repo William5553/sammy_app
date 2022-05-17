@@ -2,7 +2,8 @@ const sammies = [
     'default',
     'drippy',
     'construction',
-    'sales-associate'
+    'sales-associate',
+    'nurse'
 ];
 
 const currentSammy = {
