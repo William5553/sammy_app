@@ -1,6 +1,7 @@
 const sammies = [
     'default',
-    'drippy'
+    'drippy',
+    'construction'
 ];
 
 const prev = document.getElementById('arrow-prev');
