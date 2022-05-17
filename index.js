@@ -16,7 +16,7 @@ const currentSammy = {
 const changeSammy = () => {
     [ 'head', 'body', 'legs' ].forEach(part => {
         const element = document.getElementById(`sammy-${part}`);
-        element.src = `assets/sammies/${sammies[currentSammy][part]}/${part}.png`;
+        element.src = `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
     });
 };
 
