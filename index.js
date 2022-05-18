@@ -13,8 +13,8 @@ const currentSammy = {
     legs: 0
 };
 
-const changeSammy = () => {
-    [ 'head', 'body', 'legs' ].forEach(part => {
+const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
+    bodyParts.forEach(part => {
         const element = document.getElementById(`sammy-${part}`);
         element.src = `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
     });
@@ -37,4 +37,13 @@ const changeSammy = () => {
             changeSammy();
         });
     });
+});
+
+const headInput = document.getElementById('input-head');
+
+headInput.addEventListener('input', () => {
+    if (!headInput.value || headInput.value == '') return changeSammy([ 'head' ]);
+
+    const element = document.getElementById('sammy-head');
+    element.src = window.URL.createObjectURL(headInput.files[0]);
 });
