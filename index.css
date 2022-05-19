@@ -2,10 +2,18 @@ body {
     background-color: var(--bs-dark);
 }
 
-#main {
+#main, #bottom {
     height: 100%;
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+#bottom div {
+    width: 80%;
+    display: grid;
     justify-content: center;
     align-items: center;
 }
@@ -52,7 +60,8 @@ body {
 }
 
 #arrow-left img:active,
-#arrow-right img:active {
+#arrow-right img:active,
+#randomize:active {
     background-color: rgb(0, 96, 185);
 }
 
@@ -73,4 +82,13 @@ body {
 
 input[type=file], label {
     color: #fff;
+}
+
+#randomize {
+    background-color: rgb(0, 132, 255);
+    border-radius: 10%;
+    height: 100%;
+    width: 60%;
+    display: flex;
+    margin: 0 auto;
 }

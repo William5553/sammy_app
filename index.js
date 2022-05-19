@@ -5,7 +5,8 @@ const sammies = [
     'sales-associate',
     'nurse',
     'scientist',
-    'minecraft'
+    'minecraft',
+    'cowboy'
 ];
 
 const currentSammy = {
@@ -14,7 +15,10 @@ const currentSammy = {
     legs: 0
 };
 
+let customHead = false;
+
 const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
+    customHead = false;
     bodyParts.forEach(part => {
         const element = document.getElementById(`sammy-${part}`);
         element.src = `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
@@ -43,9 +47,28 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
 const headInput = document.getElementById('input-head');
 
 headInput.addEventListener('input', () => {
-    if (!headInput.value || headInput.value == '')
+    if (!headInput.value || headInput.value == '') {
+        customHead = false
         return changeSammy([ 'head' ]);
+    }
 
     const element = document.getElementById('sammy-head');
     element.src = window.URL.createObjectURL(headInput.files[0]);
+    customHead = true;
 });
+
+const randomizeButton = document.getElementById('randomize');
+
+randomizeButton.addEventListener('click', () => {
+    if (!customHead) {
+        currentSammy.head = Math.floor(Math.random() * sammies.length);
+        changeSammy([ 'head' ]);
+    }
+
+    currentSammy.body = Math.floor(Math.random() * sammies.length);
+    currentSammy.legs = Math.floor(Math.random() * sammies.length);
+
+    changeSammy([ 'body', 'legs' ]);
+});
+
+// TODO: make randomize not randomize if custom head
