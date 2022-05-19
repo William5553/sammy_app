@@ -4,7 +4,8 @@ const sammies = [
     'construction',
     'sales-associate',
     'nurse',
-    'scientist'
+    'scientist',
+    'minecraft'
 ];
 
 const currentSammy = {
@@ -31,9 +32,9 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
                 currentSammy[part]++;
 
             if (currentSammy[part] < 0)
-             currentSammy[part] = sammies.length - 1;
+                currentSammy[part] = sammies.length - 1;
             if (currentSammy[part] >= sammies.length)
-             currentSammy[part] = 0;
+                currentSammy[part] = 0;
             changeSammy([ `${part}` ]);
         });
     });
@@ -42,7 +43,8 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
 const headInput = document.getElementById('input-head');
 
 headInput.addEventListener('input', () => {
-    if (!headInput.value || headInput.value == '') return changeSammy([ 'head' ]);
+    if (!headInput.value || headInput.value == '')
+        return changeSammy([ 'head' ]);
 
     const element = document.getElementById('sammy-head');
     element.src = window.URL.createObjectURL(headInput.files[0]);
