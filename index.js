@@ -34,7 +34,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
              currentSammy[part] = sammies.length - 1;
             if (currentSammy[part] >= sammies.length)
              currentSammy[part] = 0;
-            changeSammy();
+            changeSammy([ `${part}` ]);
         });
     });
 });
