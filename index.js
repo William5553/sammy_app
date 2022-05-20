@@ -17,11 +17,25 @@ const currentSammy = {
 
 let customHead = false;
 
+const checkIfPageExists = url => {
+    const result = fetch(url, { method: 'HEAD', cache: 'no-cache' })
+    .then(response => response.ok)
+    .catch(() => false);
+
+    return result;
+};
+
+const getPartURL = part => `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
+
 const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
-    customHead = false;
     bodyParts.forEach(part => {
         const element = document.getElementById(`sammy-${part}`);
-        element.src = `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
+        const url = getPartURL(part);
+
+        element.src = url;
+
+        if (part == 'head')
+            customHead = false;
     });
 };
 
@@ -29,7 +43,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
     [ 'prev', 'forw' ].forEach(direction => {
         const arrow = document.getElementById(`arrow-${direction}-${part}`);
 
-        arrow.addEventListener('click', () => {
+        arrow.addEventListener('click', async () => {
             if (direction == 'prev')
                 currentSammy[part]--;
             else if (direction == 'forw')
@@ -39,6 +53,22 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
                 currentSammy[part] = sammies.length - 1;
             if (currentSammy[part] >= sammies.length)
                 currentSammy[part] = 0;
+
+            let pageExists = await checkIfPageExists(getPartURL(part));
+            while (!pageExists) {
+                if (direction == 'prev')
+                    currentSammy[part]--;
+                else if (direction == 'forw')
+                    currentSammy[part]++;
+
+                if (currentSammy[part] < 0)
+                    currentSammy[part] = sammies.length - 1;
+                if (currentSammy[part] >= sammies.length)
+                    currentSammy[part] = 0;
+                    
+                pageExists = await checkIfPageExists(getPartURL(part));
+            }
+
             changeSammy([ `${part}` ]);
         });
     });
@@ -70,5 +100,3 @@ randomizeButton.addEventListener('click', () => {
 
     changeSammy([ 'body', 'legs' ]);
 });
-
-// TODO: make randomize not randomize if custom head

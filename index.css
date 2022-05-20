@@ -8,7 +8,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 2rem;
+}
+
+#bottom {
+    padding-top: 1.5rem;
 }
 
 #bottom div {
@@ -91,4 +94,12 @@ input[type=file], label {
     width: 60%;
     display: flex;
     margin: 0 auto;
+}
+
+h1 {
+    color: #fff;
+    text-align: center;
+    padding-top: 2rem;
+    font-size: 48px;
+    font-family: 'Fredoka One', sans-serif;
 }
