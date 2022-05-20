@@ -65,7 +65,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
                     currentSammy[part] = sammies.length - 1;
                 if (currentSammy[part] >= sammies.length)
                     currentSammy[part] = 0;
-                    
+
                 pageExists = await checkIfPageExists(getPartURL(part));
             }
 
@@ -83,7 +83,7 @@ headInput.addEventListener('input', () => {
     }
 
     const element = document.getElementById('sammy-head');
-    element.src = window.URL.createObjectURL(headInput.files[0]);
+    element.src = URL.createObjectURL(headInput.files[0]);
     customHead = true;
 });
 
