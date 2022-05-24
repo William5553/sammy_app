@@ -104,6 +104,15 @@ randomizeButton.addEventListener('click', () => {
 
     currentSammy.body = Math.floor(Math.random() * sammies.length);
     currentSammy.legs = Math.floor(Math.random() * sammies.length);
+    let pageExists = await checkIfPageExists(getPartURL('legs'));
+    while (!pageExists) {
+        currentSammy.legs++;
+
+        if (currentSammy.legs >= sammies.length)
+            currentSammy.legs = 0;
+
+        pageExists = await checkIfPageExists(getPartURL('legs'));
+    }
 
     changeSammy([ 'body', 'legs' ]);
 });
