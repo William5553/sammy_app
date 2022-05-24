@@ -17,10 +17,17 @@ const currentSammy = {
 
 let customHead = false;
 
+
+const pageExistsCache = {};
 const checkIfPageExists = url => {
+    if (pageExistsCache[url] != null)
+        return pageExistsCache[url];
+
     const result = fetch(url, { method: 'HEAD', cache: 'no-cache' })
     .then(response => response.ok)
     .catch(() => false);
+
+    pageExistsCache[url] = result;
 
     return result;
 };
@@ -41,9 +48,9 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
 
 [ 'head', 'body', 'legs' ].forEach(part => {
     [ 'prev', 'forw' ].forEach(direction => {
-        const arrow = document.getElementById(`arrow-${direction}-${part}`);
+        const arrow = document.getElementById(`arrow-${direction}-${part}-inner`);
 
-        arrow.addEventListener('click', async () => {
+        arrow.onclick = async () => {
             if (direction == 'prev')
                 currentSammy[part]--;
             else if (direction == 'forw')
@@ -70,7 +77,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
             }
 
             changeSammy([ `${part}` ]);
-        });
+        };
     });
 });
 
