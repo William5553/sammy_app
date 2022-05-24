@@ -24,6 +24,7 @@ body {
 #arrow-left,
 #arrow-right {
     width: 9.5vh;
+    display: grid;
     /* background-color: #00f; */
 }
 
@@ -47,11 +48,6 @@ body {
     padding-right: 1rem;
     display: block;
     margin: 0 auto;
-}
-
-#arrow-left,
-#arrow-right {
-    display: grid;
 }
 
 #arrow-left img,
