@@ -96,7 +96,7 @@ headInput.addEventListener('input', () => {
 
 const randomizeButton = document.getElementById('randomize');
 
-randomizeButton.addEventListener('click', () => {
+randomizeButton.addEventListener('click', async () => {
     if (!customHead) {
         currentSammy.head = Math.floor(Math.random() * sammies.length);
         changeSammy([ 'head' ]);
