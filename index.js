@@ -116,3 +116,10 @@ randomizeButton.addEventListener('click', async () => {
 
     changeSammy([ 'body', 'legs' ]);
 });
+
+const colourSchemeButton = document.getElementById('colour-toggle-inner');
+
+colourSchemeButton.onclick = () => {
+    document.body.classList.toggle('light-mode');
+    colourSchemeButton.src = `assets/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
+};

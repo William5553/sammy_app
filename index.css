@@ -17,8 +17,7 @@ body {
 }
 
 #top {
-    display: inline-flex;
-    background-color: #f00;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -109,14 +108,15 @@ body {
     padding-top: 2rem;
     font-size: 48px;
     font-family: 'Fredoka One', sans-serif;
-    border: 5px solid #0f0;
 }
 
 #colour-toggle {
-    padding-left: 5rem;
-    height: 10rem;
+    width: 5rem;
+    position: absolute;
+    right: 0;
+    padding-right: 0.7rem;
 }
 
-#colour-toggle-inner {
-    border: 5px solid #FFFF00;
+#colour-toggle img {
+    padding: 5px;
 }
