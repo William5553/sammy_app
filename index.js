@@ -17,13 +17,12 @@ const currentSammy = {
 
 let customHead = false;
 
-
 const pageExistsCache = {};
-const checkIfPageExists = url => {
+const checkIfPageExists = async url => {
     if (pageExistsCache[url] != null)
         return pageExistsCache[url];
 
-    const result = fetch(url, { method: 'HEAD', cache: 'no-cache' })
+    const result = await fetch(url, { method: 'HEAD', cache: 'no-cache' })
     .then(response => response.ok)
     .catch(() => false);
 
@@ -34,12 +33,26 @@ const checkIfPageExists = url => {
 
 const getPartURL = part => `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
 
-const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
-    bodyParts.forEach(part => {
-        const element = document.getElementById(`sammy-${part}`);
-        const url = getPartURL(part);
+const ensurePageExists = async part => {
+    let pageExists = await checkIfPageExists(getPartURL(part));
+    while (!pageExists) {
+        currentSammy[part]++;
 
-        element.src = url;
+        if (currentSammy[part] < 0)
+             currentSammy[part] = sammies.length - 1;
+        if (currentSammy[part] >= sammies.length)
+            currentSammy[part] = 0;
+
+        pageExists = await checkIfPageExists(getPartURL(part));
+    }
+};
+
+const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
+    bodyParts.forEach(async part => {
+        const element = document.getElementById(`sammy-${part}`);
+        await ensurePageExists(part);
+
+        element.src = getPartURL(part);
 
         if (part == 'head')
             customHead = false;
@@ -50,7 +63,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
     [ 'prev', 'forw' ].forEach(direction => {
         const arrow = document.getElementById(`arrow-${direction}-${part}-inner`);
 
-        arrow.onclick = async () => {
+        arrow.onclick = () => {
             if (direction == 'prev')
                 currentSammy[part]--;
             else if (direction == 'forw')
@@ -60,21 +73,6 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
                 currentSammy[part] = sammies.length - 1;
             if (currentSammy[part] >= sammies.length)
                 currentSammy[part] = 0;
-
-            let pageExists = await checkIfPageExists(getPartURL(part));
-            while (!pageExists) {
-                if (direction == 'prev')
-                    currentSammy[part]--;
-                else if (direction == 'forw')
-                    currentSammy[part]++;
-
-                if (currentSammy[part] < 0)
-                    currentSammy[part] = sammies.length - 1;
-                if (currentSammy[part] >= sammies.length)
-                    currentSammy[part] = 0;
-
-                pageExists = await checkIfPageExists(getPartURL(part));
-            }
 
             changeSammy([ `${part}` ]);
         };
@@ -96,7 +94,7 @@ headInput.addEventListener('input', () => {
 
 const randomizeButton = document.getElementById('randomize');
 
-randomizeButton.addEventListener('click', async () => {
+randomizeButton.addEventListener('click', () => {
     if (!customHead) {
         currentSammy.head = Math.floor(Math.random() * sammies.length);
         changeSammy([ 'head' ]);
@@ -104,16 +102,7 @@ randomizeButton.addEventListener('click', async () => {
 
     currentSammy.body = Math.floor(Math.random() * sammies.length);
     currentSammy.legs = Math.floor(Math.random() * sammies.length);
-    let pageExists = await checkIfPageExists(getPartURL('legs'));
-    while (!pageExists) {
-        currentSammy.legs++;
-
-        if (currentSammy.legs >= sammies.length)
-            currentSammy.legs = 0;
-
-        pageExists = await checkIfPageExists(getPartURL('legs'));
-    }
-
+    
     changeSammy([ 'body', 'legs' ]);
 });
 
