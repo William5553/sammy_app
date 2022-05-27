@@ -36,7 +36,10 @@ const getPartURL = part => `assets/sammies/${sammies[currentSammy[part]]}/${part
 const ensurePageExists = async part => {
     let pageExists = await checkIfPageExists(getPartURL(part));
     while (!pageExists) {
-        currentSammy[part]++;
+        if (currentSammy[part] + 1 === currentSammy[part])
+            currentSammy[part]--;
+        else
+            currentSammy[part]++;
 
         if (currentSammy[part] < 0)
              currentSammy[part] = sammies.length - 1;
