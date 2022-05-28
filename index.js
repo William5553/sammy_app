@@ -33,10 +33,10 @@ const checkIfPageExists = async url => {
 
 const getPartURL = part => `assets/sammies/${sammies[currentSammy[part]]}/${part}.png`;
 
-const ensurePageExists = async part => {
+const ensurePageExists = async (part, direction) => {
     let pageExists = await checkIfPageExists(getPartURL(part));
     while (!pageExists) {
-        if (currentSammy[part] + 1 === currentSammy[part])
+        if (direction == 'prev')
             currentSammy[part]--;
         else
             currentSammy[part]++;
@@ -50,10 +50,10 @@ const ensurePageExists = async part => {
     }
 };
 
-const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
+const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ], direction) => {
     bodyParts.forEach(async part => {
         const element = document.getElementById(`sammy-${part}`);
-        await ensurePageExists(part);
+        await ensurePageExists(part, direction);
 
         element.src = getPartURL(part);
 
@@ -77,7 +77,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ]) => {
             if (currentSammy[part] >= sammies.length)
                 currentSammy[part] = 0;
 
-            changeSammy([ `${part}` ]);
+            changeSammy([ `${part}` ], direction);
         };
     });
 });
