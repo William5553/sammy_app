@@ -57,8 +57,10 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ], direction) => {
 
         element.src = getPartURL(part);
 
-        if (part == 'head')
+        if (part == 'head' && customHead) {
             customHead = false;
+            headInput.value == '';
+        }
     });
 };
 
