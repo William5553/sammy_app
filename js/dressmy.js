@@ -115,5 +115,5 @@ const colourSchemeButton = document.getElementById('colour-toggle-inner');
 
 colourSchemeButton.onclick = () => {
     document.body.classList.toggle('light-mode');
-    colourSchemeButton.src = `assets/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
+    colourSchemeButton.src = `assets/dressmy/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
 };
