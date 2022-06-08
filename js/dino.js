@@ -92,6 +92,7 @@ const setPixelToWorldScale = () => {
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 };
 
+updateScoreText();
 setPixelToWorldScale();
 window.addEventListener('resize', setPixelToWorldScale);
 document.addEventListener('keydown', handleStart, { once: true });
