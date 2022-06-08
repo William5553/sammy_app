@@ -16,8 +16,7 @@ export const updateGround = (delta, speedScale) => {
   groundElems.forEach(ground => {
     incrementCustomProperty(ground, '--left', delta * speedScale * SPEED * -1);
 
-    if (getCustomProperty(ground, '--left') <= -300) {
+    if (getCustomProperty(ground, '--left') <= -300)
       incrementCustomProperty(ground, '--left', 600);
-    }
   });
 };

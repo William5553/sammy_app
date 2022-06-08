@@ -30,9 +30,7 @@ export const updateCactus = (delta, speedScale) => {
 };
 
 export const getCactusRects = () => {
-  return [...document.querySelectorAll('[data-cactus]')].map(cactus => {
-    return cactus.getBoundingClientRect(); // look into making this a one liner
-  });
+  return [...document.querySelectorAll('[data-cactus]')].map(cactus => cactus.getBoundingClientRect());
 };
 
 const createCactus = () => {

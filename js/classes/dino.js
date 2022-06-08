@@ -48,6 +48,7 @@ const handleRun = (delta, speedScale) => {
     dinoElem.src = `assets/dinos/${selectedDino}/dino-run-${dinoFrame}.png`;
     currentFrameTime -= FRAME_TIME;
   }
+
   currentFrameTime += delta * speedScale;
 };
 
@@ -69,4 +70,4 @@ const onJump = e => {
 
   yVelocity = JUMP_SPEED;
   isJumping = true;
-};;
+};
