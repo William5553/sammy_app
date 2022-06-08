@@ -10,13 +10,10 @@ const worldElem = document.querySelector('[data-world]');
 const scoreElem = document.querySelector('[data-score]');
 const startScreenElem = document.querySelector('[data-start-screen]');
 
-setPixelToWorldScale();
-window.addEventListener('resize', setPixelToWorldScale);
-document.addEventListener('keydown', handleStart, { once: true });
-
 let lastTime;
 let speedScale;
 let score;
+
 const update = time => {
   if (lastTime == null) {
     lastTime = time;
@@ -84,3 +81,7 @@ const setPixelToWorldScale = () => {
   worldElem.style.width = `${WORLD_WIDTH * worldToPixelScale}px`;
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 };
+
+setPixelToWorldScale();
+window.addEventListener('resize', setPixelToWorldScale);
+document.addEventListener('keydown', handleStart, { once: true });

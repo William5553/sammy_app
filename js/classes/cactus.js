@@ -12,9 +12,7 @@ const worldElem = document.querySelector('[data-world]');
 let nextCactusTime;
 export const setupCactus = () => {
   nextCactusTime = CACTUS_INTERVAL_MIN;
-  document.querySelectorAll('[data-cactus]').forEach(cactus => {
-    cactus.remove();
-  });
+  document.querySelectorAll('[data-cactus]').forEach(cactus => cactus.remove());
 };
 
 export const updateCactus = (delta, speedScale) => {
@@ -33,19 +31,17 @@ export const updateCactus = (delta, speedScale) => {
 
 export const getCactusRects = () => {
   return [...document.querySelectorAll('[data-cactus]')].map(cactus => {
-    return cactus.getBoundingClientRect();
+    return cactus.getBoundingClientRect(); // look into making this a one liner
   });
 };
 
 const createCactus = () => {
   const cactus = document.createElement('img');
   cactus.dataset.cactus = true;
-  cactus.src = 'imgs/cactus.png';
+  cactus.src = 'assets/dino/cactus.png';
   cactus.classList.add('cactus');
   setCustomProperty(cactus, '--left', 100);
   worldElem.append(cactus);
 };
 
-const randomNumberBetween = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
+const randomNumberBetween = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
