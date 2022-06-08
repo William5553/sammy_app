@@ -12,7 +12,8 @@ const startScreenElem = document.querySelector('[data-start-screen]');
 
 let lastTime;
 let speedScale;
-let score;
+let score = 0;
+let highScore = 0;
 
 const update = time => {
   if (lastTime == null) {
@@ -53,10 +54,12 @@ const updateSpeedScale = delta => {
 
 const updateScore = delta => {
   score += delta * 0.01;
-  scoreElem.textContent = Math.floor(score);
+  scoreElem.textContent = `SCORE ${Math.floor(score)} | HI ${Math.floor(highScore)}`;
 };
 
 const handleStart = () => {
+  if (score > highScore)
+    highScore = score;
   lastTime = null;
   speedScale = 1;
   score = 0;
