@@ -1,13 +1,4 @@
-const sammies = [
-  'default',
-  'drippy',
-  'construction',
-  'sales-associate',
-  'nurse',
-  'scientist',
-  'minecraft',
-  'cowboy'
-];
+import sammies from '../assets/dressmy/sammies.json' assert { type: "json" };
 
 const currentSammy = {
   head: 0,

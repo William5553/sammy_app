@@ -3,7 +3,7 @@ import { updateDino, setupDino, getDinoRect, setDinoLose } from './classes/dino.
 import { updateCactus, setupCactus, getCactusRects } from './classes/cactus.js';
 
 const WORLD_WIDTH = 100;
-const WORLD_HEIGHT = 30;
+const WORLD_HEIGHT = 35;
 const SPEED_SCALE_INCREASE = 0.00001;
 
 const worldElem = document.querySelector('[data-world]');

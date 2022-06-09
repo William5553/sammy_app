@@ -66,7 +66,7 @@ const handleJump = delta => {
 }
 
 const onJump = e => {
-  if (e.code !== 'Space' || isJumping) return;
+  if (e.keyCode !== 32 || isJumping) return;
 
   yVelocity = JUMP_SPEED;
   isJumping = true;
