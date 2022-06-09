@@ -18,7 +18,7 @@ let highScore = localStorage.getItem('highScore') ?? 0;
 const update = time => {
   if (lastTime == null) {
     lastTime = time;
-    window.requestAnimationFrame(update);
+    requestAnimationFrame(update);
     return;
   }
   
@@ -29,10 +29,12 @@ const update = time => {
   updateCactus(delta, speedScale);
   updateSpeedScale(delta);
   updateScore(delta);
-  if (checkLose()) return handleLose();
+
+  if (checkLose())
+    return handleLose();
 
   lastTime = time;
-  window.requestAnimationFrame(update);
+  requestAnimationFrame(update);
 };
 
 const checkLose = () => {
@@ -55,26 +57,29 @@ const updateScore = delta => {
   updateScoreText();
 };
 
-const handleStart = () => {
+const handleStart = e => {
+  if (e.keyCode !== 32) return;
+  document.removeEventListener('keydown', handleStart);
+
   if (score > highScore) {
     highScore = score;
     localStorage.setItem('highScore', highScore);
   }
 
-  lastTime = null;
+  lastTime = undefined;
   speedScale = 1;
   score = 0;
   setupGround();
   setupDino();
   setupCactus();
   startScreenElem.classList.add('hide');
-  window.requestAnimationFrame(update);
+  requestAnimationFrame(update);
 };
 
 const handleLose = () => {
   setDinoLose();
   setTimeout(() => {
-    document.addEventListener('keydown', handleStart, { once: true });
+    document.addEventListener('keydown', handleStart);
     startScreenElem.classList.remove('hide');
   }, 100);
 };
@@ -89,4 +94,4 @@ const setPixelToWorldScale = () => {
 updateScoreText();
 setPixelToWorldScale();
 window.addEventListener('resize', setPixelToWorldScale);
-document.addEventListener('keydown', handleStart, { once: true });
+document.addEventListener('keydown', handleStart);
