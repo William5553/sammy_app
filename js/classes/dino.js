@@ -5,7 +5,7 @@ import {
 } from '../util/updateCustomProperty.js';
 
 const dinoElem = document.querySelector('[data-dino]');
-const JUMP_SPEED = 0.45;
+const JUMP_SPEED = 0.445;
 const GRAVITY = 0.0015;
 const DINO_FRAME_COUNT = 4;
 const FRAME_TIME = 100;
@@ -22,8 +22,11 @@ export const setupDino = () => {
   currentFrameTime = 0;
   yVelocity = 0;
   setCustomProperty(dinoElem, '--bottom', 0);
+
   document.removeEventListener('keydown', onJump);
   document.addEventListener('keydown', onJump);
+  document.removeEventListener('click', onJump);
+  document.addEventListener('click', onJump);
 };
 
 export const updateDino = (delta, speedScale) => {
@@ -66,7 +69,7 @@ const handleJump = delta => {
 }
 
 const onJump = e => {
-  if (e.keyCode !== 32 || isJumping) return;
+  if ((e instanceof KeyboardEvent && e.code !== "Space") || isJumping) return;
 
   yVelocity = JUMP_SPEED;
   isJumping = true;

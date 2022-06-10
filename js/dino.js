@@ -15,7 +15,7 @@ let speedScale;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ?? 0;
 
-// TODO: raf hidden stuff, replace sammy apps h1 with banner, icons for main and dino
+// TODO: click to start/jump, stuff so RAF runs when hidden or something, shop, replace sammy apps h1 with banner, icons for main and dino
 
 const update = time => {
   if (lastTime == null) {
@@ -60,8 +60,9 @@ const updateScore = delta => {
 };
 
 const handleStart = e => {
-  if (e.keyCode !== 32) return;
+  if (e instanceof KeyboardEvent && e.code !== "Space") return;
   document.removeEventListener('keydown', handleStart);
+  document.removeEventListener('click', handleStart);
 
   if (score > highScore) {
     highScore = score;
@@ -82,6 +83,7 @@ const handleLose = () => {
   setDinoLose();
   setTimeout(() => {
     document.addEventListener('keydown', handleStart);
+    document.addEventListener('click', handleStart);
     startScreenElem.classList.remove('hide');
   }, 100);
 };
@@ -97,3 +99,4 @@ updateScoreText();
 setPixelToWorldScale();
 window.addEventListener('resize', setPixelToWorldScale);
 document.addEventListener('keydown', handleStart);
+document.addEventListener('click', handleStart);

@@ -5,7 +5,7 @@ import {
 } from '../util/updateCustomProperty.js';
 
 const SPEED = 0.05;
-const CACTUS_INTERVAL_MIN = 500;
+const CACTUS_INTERVAL_MIN = 600;
 const CACTUS_INTERVAL_MAX = 2000;
 const worldElem = document.querySelector('[data-world]');
 
@@ -29,9 +29,7 @@ export const updateCactus = (delta, speedScale) => {
   nextCactusTime -= delta;
 };
 
-export const getCactusRects = () => {
-  return [...document.querySelectorAll('[data-cactus]')].map(cactus => cactus.getBoundingClientRect());
-};
+export const getCactusRects = () => [...document.querySelectorAll('[data-cactus]')].map(cactus => cactus.getBoundingClientRect());
 
 const createCactus = () => {
   const cactus = document.createElement('img');
