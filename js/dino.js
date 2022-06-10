@@ -15,6 +15,8 @@ let speedScale;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ?? 0;
 
+// TODO: raf hidden stuff, replace sammy apps h1 with banner, icons for main and dino
+
 const update = time => {
   if (lastTime == null) {
     lastTime = time;
