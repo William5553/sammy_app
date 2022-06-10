@@ -13,12 +13,13 @@ body {
     min-height: 100vh;
 }
 
-.world {
+#world {
     overflow: hidden;
     position: relative;
 }
 
-.score {
+#score {
+    font-family: 'Kdam Thmor Pro', sans-serif;
     position: absolute;
     font-size: 3vmin;
     right: 1vmin;
@@ -26,8 +27,9 @@ body {
 }
 
 #start-screen {
+    font-family: 'Kdam Thmor Pro', sans-serif;
     position: absolute;
-    font-size: 5vmin;
+    font-size: 4vmin;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
