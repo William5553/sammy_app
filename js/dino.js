@@ -15,7 +15,7 @@ let speedScale;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ?? 0;
 
-// TODO: click to start/jump, stuff so RAF runs when hidden or something, shop, replace sammy apps h1 with banner, icons for main and dino
+// TODO: stuff so RAF runs when hidden or something, shop, replace sammy apps h1 with banner, icons for main and dino
 
 const update = time => {
   if (lastTime == null) {

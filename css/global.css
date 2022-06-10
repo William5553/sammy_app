@@ -1,0 +1,43 @@
+#header {
+    background: #f0f0d0;
+	padding: 3px 10px 7px;
+	height: 55px;
+	width: 100%;
+	z-index: 100;
+    top: 0;
+    display: flex;
+}
+
+#header p,
+#header a {
+	line-height: 1;
+	font-size: x-large;
+	font-weight: 700;
+	text-decoration: none;
+	color: #664;
+}
+
+#header a:hover {
+	color: #d60;
+}
+
+#header>div {
+	width: 980px;
+	margin: 0 auto;
+	padding: 0;
+    display: inline-block;
+	vertical-align: middle;
+	margin: 5px
+}
+
+#header>div>div>p {
+	margin: 0;
+}
+
+#header>div>div>p>a:nth-child(2) {
+	margin-right: 0;
+}
+
+#homeImg {
+    height: 100%;
+}
