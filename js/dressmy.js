@@ -71,11 +71,14 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ], direction) => {
         currentSammy[part] = 0;
 
       changeSammy([ `${part}` ], direction);
+      alert(`${part}-${direction}`);
     });
   });
 });
 
 const headInput = document.querySelector('#input-head');
+const randomizeButton = document.querySelector('#randomize');
+const colourSchemeButton = document.querySelector('#colour-toggle-inner');
 
 headInput.addEventListener('input', () => {
   if (!headInput.value || headInput.value == '') {
@@ -88,8 +91,6 @@ headInput.addEventListener('input', () => {
   customHead = true;
 });
 
-const randomizeButton = document.querySelector('#randomize');
-
 randomizeButton.addEventListener('click', () => {
   if (!customHead) {
     currentSammy.head = Math.floor(Math.random() * sammies.length);
@@ -101,8 +102,6 @@ randomizeButton.addEventListener('click', () => {
     
   changeSammy([ 'body', 'legs' ]);
 });
-
-const colourSchemeButton = document.querySelector('#colour-toggle-inner');
 
 colourSchemeButton.addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
