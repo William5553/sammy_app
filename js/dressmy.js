@@ -1,4 +1,13 @@
-import sammies from '../assets/dressmy/sammies.json' assert { type: "json" };
+const sammies = [
+  'default',
+  'drippy',
+  'construction',
+  'sales-associate',
+  'nurse',
+  'scientist',
+  'minecraft',
+  'cowboy'
+];
 
 const currentSammy = {
   head: 0,
@@ -106,9 +115,3 @@ colourSchemeButton.onclick = () => {
   document.body.classList.toggle('light-mode');
   colourSchemeButton.src = `assets/dressmy/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
 }
-
-(function () {
-  if (!/eruda=true/.test(window.location)) return;
-  document.write('<scr' + 'ipt src="https://cdn.jsdelivr.net/npm/eruda"></scr' + 'ipt>');
-  document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
-})();
