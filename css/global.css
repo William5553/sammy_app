@@ -41,3 +41,7 @@
 #homeImg {
     height: 100%;
 }
+
+a {
+	touch-action: manipulation;
+}
