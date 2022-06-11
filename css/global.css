@@ -1,3 +1,7 @@
+body {
+	touch-action: manipulation;
+}
+
 #header {
     background: #f0f0d0;
 	padding: 3px 10px 7px;
