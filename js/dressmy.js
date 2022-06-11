@@ -59,7 +59,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ], direction) => {
   [ 'prev', 'forw' ].forEach(direction => {
     const arrow = document.querySelector(`#arrow-${direction}-${part}-inner`);
 
-    arrow.addEventListener('click', () => {
+    arrow.onclick = () => {
       if (direction == 'prev')
         currentSammy[part]--;
       else if (direction == 'forw')
@@ -71,8 +71,7 @@ const changeSammy = (bodyParts = [ 'head', 'body', 'legs' ], direction) => {
         currentSammy[part] = 0;
 
       changeSammy([ `${part}` ], direction);
-      alert(`${part}-${direction}`);
-    });
+    }
   });
 });
 
@@ -91,7 +90,7 @@ headInput.addEventListener('input', () => {
   customHead = true;
 });
 
-randomizeButton.addEventListener('click', () => {
+randomizeButton.onclick = () => {
   if (!customHead) {
     currentSammy.head = Math.floor(Math.random() * sammies.length);
     changeSammy([ 'head' ]);
@@ -101,9 +100,9 @@ randomizeButton.addEventListener('click', () => {
   currentSammy.legs = Math.floor(Math.random() * sammies.length);
     
   changeSammy([ 'body', 'legs' ]);
-});
+}
 
-colourSchemeButton.addEventListener('click', () => {
+colourSchemeButton.onclick = () => {
   document.body.classList.toggle('light-mode');
   colourSchemeButton.src = `assets/dressmy/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
-});
+}
