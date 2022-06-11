@@ -106,3 +106,10 @@ colourSchemeButton.onclick = () => {
   document.body.classList.toggle('light-mode');
   colourSchemeButton.src = `assets/dressmy/${document.body.classList.contains('light-mode') ? 'moon' : 'sun'}.png`;
 }
+
+(function () {
+  var src = '//cdn.jsdelivr.net/npm/eruda';
+  if (!/eruda=true/.test(window.location) && localStorage.getItem('active-eruda') != 'true') return;
+  document.write('<scr' + 'ipt src="' + src + '"></scr' + 'ipt>');
+  document.write('<scr' + 'ipt>eruda.init();</scr' + 'ipt>');
+})();
