@@ -4,7 +4,7 @@ import { updateCactus, setupCactus, getCactusRects } from './classes/cactus.js';
 
 const WORLD_WIDTH = 100;
 const WORLD_HEIGHT = 35;
-const SPEED_SCALE_INCREASE = 0.00001;
+const SPEED_SCALE_INCREASE = 0.000015;
 
 const worldElem = document.querySelector('[data-world]');
 const scoreElem = document.querySelector('[data-score]');
