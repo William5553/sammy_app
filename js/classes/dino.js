@@ -25,8 +25,8 @@ export const setupDino = () => {
 
   document.removeEventListener('keydown', onJump);
   document.addEventListener('keydown', onJump);
-  document.removeEventListener('click', onJump);
-  document.addEventListener('click', onJump);
+  document.removeEventListener('mousedown', onJump);
+  document.addEventListener('mousedown', onJump);
 };
 
 export const updateDino = (delta, speedScale) => {
@@ -69,7 +69,7 @@ const handleJump = delta => {
 }
 
 const onJump = e => {
-  if ((e instanceof KeyboardEvent && e.code !== "Space") || isJumping) return;
+  if ((e instanceof KeyboardEvent && !(e.code === 'Space' || e.code === 'ArrowUp')) || isJumping) return;
 
   yVelocity = JUMP_SPEED;
   isJumping = true;

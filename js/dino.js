@@ -14,23 +14,21 @@ let lastTime;
 let speedScale;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ?? 0;
+let raqId;
+let tabbedOut = false;
 
-// TODO: stuff so RAF runs when hidden or something, unlock new characters with high score, icons for main and dino
+// TODO: unlock new characters with high score, icons for main and dino
 
 const update = time => {
-  if (lastTime == null) {
-    lastTime = time;
-    requestAnimationFrame(update);
-    return;
-  }
-  
-  const delta = time - lastTime;
+  const delta = time - (lastTime ?? time);
 
-  updateGround(delta, speedScale);
-  updateDino(delta, speedScale);
-  updateCactus(delta, speedScale);
-  updateSpeedScale(delta);
-  updateScore(delta);
+  if (!tabbedOut) {
+    updateGround(delta, speedScale);
+    updateDino(delta, speedScale);
+    updateCactus(delta, speedScale);
+    updateSpeedScale(delta);
+    updateScore(delta);
+  }
 
   if (checkLose())
     return handleLose();
@@ -95,8 +93,21 @@ const setPixelToWorldScale = () => {
   worldElem.style.height = `${WORLD_HEIGHT * worldToPixelScale}px`;
 };
 
+const onVisibilityChange = e => {
+  if (document.hidden || document.webkitHidden || e.type == 'blur' || document.visibilityState != 'visible') {
+    tabbedOut = true;
+    cancelAnimationFrame(raqId);
+    raqId = 0;
+  } else {
+    setTimeout(() => {
+      tabbedOut = false;
+    }, 100);
+  }
+};
+
 updateScoreText();
 setPixelToWorldScale();
 window.addEventListener('resize', setPixelToWorldScale);
 document.addEventListener('keydown', handleStart);
 document.addEventListener('click', handleStart);
+document.addEventListener('visibilitychange', onVisibilityChange);
