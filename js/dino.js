@@ -9,6 +9,9 @@ const SPEED_SCALE_INCREASE = 0.000015;
 const worldElem = document.querySelector('[data-world]');
 const scoreElem = document.querySelector('[data-score]');
 const startScreenElem = document.querySelector('[data-start-screen]');
+const headerElem = document.querySelector('#header');
+const shopButtonElem = document.querySelector('#shopButton');
+const shopElem = document.querySelector('[data-shop]');
 
 let lastTime;
 let speedScale;
@@ -58,7 +61,8 @@ const updateScore = delta => {
 };
 
 const handleStart = e => {
-  if (e instanceof KeyboardEvent && e.code !== "Space") return;
+  if (e instanceof KeyboardEvent && e.code !== 'Space') return;
+  if (e.type === 'click' && e.composedPath().includes(headerElem)) return;
 
   document.removeEventListener('keydown', handleStart);
   document.removeEventListener('click', handleStart);
@@ -75,7 +79,7 @@ const handleStart = e => {
   setupGround();
   setupDino();
   setupCactus();
-  
+
   startScreenElem.classList.add('hide');
   requestAnimationFrame(update);
 };
@@ -107,6 +111,10 @@ const onVisibilityChange = e => {
     }, 100);
   }
 };
+
+shopButtonElem.addEventListener('click', () => {
+  shopElem.classList.toggle('hide');
+});
 
 updateScoreText();
 setPixelToWorldScale();
