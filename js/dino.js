@@ -59,6 +59,7 @@ const updateScore = delta => {
 
 const handleStart = e => {
   if (e instanceof KeyboardEvent && e.code !== "Space") return;
+
   document.removeEventListener('keydown', handleStart);
   document.removeEventListener('click', handleStart);
 
@@ -70,9 +71,11 @@ const handleStart = e => {
   lastTime = undefined;
   speedScale = 1;
   score = 0;
+
   setupGround();
   setupDino();
   setupCactus();
+  
   startScreenElem.classList.add('hide');
   requestAnimationFrame(update);
 };
