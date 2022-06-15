@@ -62,7 +62,7 @@ const updateScore = delta => {
 
 const handleStart = e => {
   if (e instanceof KeyboardEvent && e.code !== 'Space') return;
-  if (e.type === 'click' && e.composedPath().includes(headerElem)) return;
+  if (e.type === 'click' && (e.composedPath().includes(headerElem) || e.composedPath().includes(shopElem))) return;
 
   document.removeEventListener('keydown', handleStart);
   document.removeEventListener('click', handleStart);
