@@ -8,7 +8,7 @@ const dinoElem = document.querySelector('[data-dino]');
 const JUMP_SPEED = 0.445;
 const GRAVITY = 0.0015;
 const DINO_FRAME_COUNT = 4;
-const FRAME_TIME = 200;
+const FRAME_TIME = 150;
 
 let isJumping;
 let dinoFrame;
