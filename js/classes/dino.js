@@ -14,7 +14,7 @@ let isJumping;
 let dinoFrame;
 let currentFrameTime;
 let yVelocity;
-const selectedDino = localStorage.getItem('currentChar') ?? 'default';
+let selectedDino = localStorage.getItem('currentChar') ?? 'default';
 
 export const setupDino = () => {
   isJumping = false;
@@ -38,6 +38,11 @@ export const getDinoRect = () => dinoElem.getBoundingClientRect();
 
 export const setDinoLose = () => {
   dinoElem.src = `assets/dinos/${selectedDino}/dino-dead.png`;
+};
+
+export const updateDinoImg = newDino => {
+  selectedDino = newDino;
+  dinoElem.src = `assets/dinos/${selectedDino}/dino-stationary.png`;
 };
 
 const handleRun = (delta, speedScale) => {

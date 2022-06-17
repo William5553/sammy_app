@@ -1,5 +1,5 @@
 import { updateGround, setupGround } from './classes/ground.js';
-import { updateDino, setupDino, getDinoRect, setDinoLose } from './classes/dino.js';
+import { updateDino, setupDino, getDinoRect, setDinoLose, updateDinoImg } from './classes/dino.js';
 import { updateCactus, setupCactus, getCactusRects } from './classes/cactus.js';
 
 const WORLD_WIDTH = 100;
@@ -7,7 +7,8 @@ const WORLD_HEIGHT = 35;
 const SPEED_SCALE_INCREASE = 0.000015;
 
 const AVAILABLE_CHARACTERS = {
-  default: 0
+  default: 0,
+  yung: 250
 };
 
 const worldElem = document.querySelector('[data-world]');
@@ -117,19 +118,9 @@ const onVisibilityChange = e => {
   }
 };
 
-const template = document.querySelector('#char-template');
-const setupShop = () => {
-  template.remove();
-
-  if (localStorage.getItem('currentChar') == undefined)
-    localStorage.setItem('currentChar', 'default');
-
+const updateShop = () => {
   for (const [character, requirement] of Object.entries(AVAILABLE_CHARACTERS)) {
-    if (document.querySelector(`#char-${character}`)) return;
-
-    const clone = template.cloneNode(true);
-    clone.id = `char-${character}`;
-
+    const clone = document.querySelector(`#char-${character}`);
 
     const charImg = clone.querySelector('.shop-img');
     const reqText = clone.querySelector('.shop-req');
@@ -141,14 +132,34 @@ const setupShop = () => {
     charImg.src = `assets/dinos/${character}/dino-stationary.png`;
     charImg.alt = character;
     reqText.textContent = `HIGH SCORE: ${requirement}`;
+  }
+};
 
+const template = document.querySelector('#char-template');
+const setupShop = () => {
+  if (template)
+   template.remove();
+
+  if (localStorage.getItem('currentChar') == undefined)
+    localStorage.setItem('currentChar', 'default');
+
+  for (const [character, requirement] of Object.entries(AVAILABLE_CHARACTERS)) {
+    if (document.querySelector(`#char-${character}`)) return;
+
+    const clone = template.cloneNode(true);
+    clone.id = `char-${character}`;
+
+    const equipButton = clone.querySelector('.btn-equip');
     equipButton.addEventListener('click', () => {
       currentChar = character;
       localStorage.setItem('currentChar', character);
+      updateDinoImg(character);
+      updateShop();
     });
 
     shopElem.appendChild(clone);
   }
+  updateShop();
 };
 
 shopButtonElem.addEventListener('click', () => {
@@ -158,6 +169,7 @@ shopButtonElem.addEventListener('click', () => {
 updateScoreText();
 setPixelToWorldScale();
 setupShop();
+updateDinoImg(currentChar);
 window.addEventListener('resize', setPixelToWorldScale);
 document.addEventListener('keydown', handleStart);
 document.addEventListener('click', handleStart);
