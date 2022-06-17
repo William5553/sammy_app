@@ -61,6 +61,23 @@ const updateScoreText = () => {
   scoreElem.textContent = `HI ${Math.floor(highScore)} | SCORE ${Math.floor(score)}`;
 };
 
+const updateShop = () => {
+  for (const [character, requirement] of Object.entries(AVAILABLE_CHARACTERS)) {
+    const clone = document.querySelector(`#char-${character}`);
+
+    const charImg = clone.querySelector('.shop-img');
+    const reqText = clone.querySelector('.shop-req');
+    const equipButton = clone.querySelector('.btn-equip');
+
+    equipButton.classList.add(highScore >= requirement ? 'btn-primary' : 'btn-danger');
+    equipButton.disabled = highScore < requirement || currentChar === character;
+    equipButton.textContent = highScore >= requirement ? (currentChar === character ? 'Equipped' : 'Equip') : 'LOCKED';
+    charImg.src = `assets/dinos/${character}/dino-stationary.png`;
+    charImg.alt = character;
+    reqText.textContent = `HIGH SCORE: ${requirement}`;
+  }
+};
+
 const updateScore = delta => {
   score += delta * 0.01;
   updateScoreText();
@@ -76,6 +93,7 @@ const handleStart = e => {
   if (score > highScore) {
     highScore = score;
     localStorage.setItem('highScore', highScore);
+    updateShop();
   }
 
   lastTime = undefined;
@@ -115,23 +133,6 @@ const onVisibilityChange = e => {
     setTimeout(() => {
       tabbedOut = false;
     }, 100);
-  }
-};
-
-const updateShop = () => {
-  for (const [character, requirement] of Object.entries(AVAILABLE_CHARACTERS)) {
-    const clone = document.querySelector(`#char-${character}`);
-
-    const charImg = clone.querySelector('.shop-img');
-    const reqText = clone.querySelector('.shop-req');
-    const equipButton = clone.querySelector('.btn-equip');
-
-    equipButton.classList.add(highScore >= requirement ? 'btn-primary' : 'btn-danger');
-    equipButton.disabled = highScore < requirement || currentChar === character;
-    equipButton.textContent = highScore >= requirement ? (currentChar === character ? 'Equipped' : 'Equip') : 'LOCKED';
-    charImg.src = `assets/dinos/${character}/dino-stationary.png`;
-    charImg.alt = character;
-    reqText.textContent = `HIGH SCORE: ${requirement}`;
   }
 };
 

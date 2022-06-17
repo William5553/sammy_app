@@ -5,8 +5,8 @@ import {
 } from '../util/updateCustomProperty.js';
 
 const SPEED = 0.05;
-const CACTUS_INTERVAL_MIN = 700;
-const CACTUS_INTERVAL_MAX = 1750;
+const CACTUS_INTERVAL_MIN = 650;
+const CACTUS_INTERVAL_MAX = 1875;
 const worldElem = document.querySelector('[data-world]');
 
 let nextCactusTime;
