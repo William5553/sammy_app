@@ -14,7 +14,7 @@ let isJumping;
 let dinoFrame;
 let currentFrameTime;
 let yVelocity;
-const selectedDino = 'sammy1';
+const selectedDino = localStorage.getItem('currentChar') ?? 'default';
 
 export const setupDino = () => {
   isJumping = false;

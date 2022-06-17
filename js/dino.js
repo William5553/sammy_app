@@ -6,6 +6,10 @@ const WORLD_WIDTH = 100;
 const WORLD_HEIGHT = 35;
 const SPEED_SCALE_INCREASE = 0.000015;
 
+const AVAILABLE_CHARACTERS = {
+  default: 0
+};
+
 const worldElem = document.querySelector('[data-world]');
 const scoreElem = document.querySelector('[data-score]');
 const startScreenElem = document.querySelector('[data-start-screen]');
@@ -17,6 +21,7 @@ let lastTime;
 let speedScale;
 let score = 0;
 let highScore = localStorage.getItem('highScore') ?? 0;
+let currentChar = localStorage.getItem('currentChar') ?? 'default';
 let raqId;
 let tabbedOut = false;
 
@@ -112,12 +117,47 @@ const onVisibilityChange = e => {
   }
 };
 
+const template = document.querySelector('#char-template');
+const setupShop = () => {
+  template.remove();
+
+  if (localStorage.getItem('currentChar') == undefined)
+    localStorage.setItem('currentChar', 'default');
+
+  for (const [character, requirement] of Object.entries(AVAILABLE_CHARACTERS)) {
+    if (document.querySelector(`#char-${character}`)) return;
+
+    const clone = template.cloneNode(true);
+    clone.id = `char-${character}`;
+
+
+    const charImg = clone.querySelector('.shop-img');
+    const reqText = clone.querySelector('.shop-req');
+    const equipButton = clone.querySelector('.btn-equip');
+
+    equipButton.classList.add(highScore >= requirement ? 'btn-primary' : 'btn-danger');
+    equipButton.disabled = highScore < requirement || currentChar === character;
+    equipButton.textContent = highScore >= requirement ? (currentChar === character ? 'Equipped' : 'Equip') : 'LOCKED';
+    charImg.src = `assets/dinos/${character}/dino-stationary.png`;
+    charImg.alt = character;
+    reqText.textContent = `HIGH SCORE: ${requirement}`;
+
+    equipButton.addEventListener('click', () => {
+      currentChar = character;
+      localStorage.setItem('currentChar', character);
+    });
+
+    shopElem.appendChild(clone);
+  }
+};
+
 shopButtonElem.addEventListener('click', () => {
   shopElem.classList.toggle('hide');
 });
 
 updateScoreText();
 setPixelToWorldScale();
+setupShop();
 window.addEventListener('resize', setPixelToWorldScale);
 document.addEventListener('keydown', handleStart);
 document.addEventListener('click', handleStart);
