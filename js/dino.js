@@ -8,7 +8,8 @@ const SPEED_SCALE_INCREASE = 0.000015;
 
 const AVAILABLE_CHARACTERS = {
   default: 0,
-  yung: 250
+  yung: 250,
+  dusan: 500
 };
 
 const worldElem = document.querySelector('[data-world]');

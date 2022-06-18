@@ -5,8 +5,8 @@ import {
 } from '../util/updateCustomProperty.js';
 
 const dinoElem = document.querySelector('[data-dino]');
-const JUMP_SPEED = 0.445;
-const GRAVITY = 0.0015;
+const JUMP_SPEED = 0.475;
+const GRAVITY = 0.00175;
 const DINO_FRAME_COUNT = 4;
 const FRAME_TIME = 150;
 
