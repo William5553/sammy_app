@@ -27,8 +27,6 @@ let currentChar = localStorage.getItem('currentChar') ?? 'default';
 let raqId;
 let tabbedOut = false;
 
-// TODO: icons for main and dino
-
 const update = time => {
   const delta = time - (lastTime ?? time);
 

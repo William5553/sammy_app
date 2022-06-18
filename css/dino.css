@@ -73,7 +73,7 @@ body {
     justify-content: center;
     grid-gap: 2px;
     grid-auto-columns: max-content;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* change 3 to whatever when add new characters */
     overflow: auto;
 }
 
