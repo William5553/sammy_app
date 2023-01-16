@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Musa</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kdam+Thmor+Pro|Fredoka+One&display=swap">
+    <link rel="stylesheet" href="./css/whack-a-musa.css">
+    <script src="./js/whack-a-musa.js" type="module"></script>
+</head>
+<body>
+    <div id="blur" class="hidden"></div>
+    
+    <!-- DEBUG BUTTONS -->
+    <div id="debug" class="hidden">
+        <button id="debugStartGame">start game</button>
+        <button id="debugStartGameNoCount">start game (skip countdown)</button>
+        <button id="debugMakeActive">make all moles active</button>
+    </div>
+
+    <div id="score">HI ??? | SCORE ???</div>
+    <div id="timer">Loading...</div>
+
+    <div id="hole-holder"></div>
+
+    <div id="mode-selector" class="hidden">
+        <h1>Whack-a-Musa</h1>
+        <h2>Select a mode</h2>
+        <div id="mode-buttons">
+            <button class="modeButton" id="endlessEasy">Endless Easy<br>High: <span id="endlessEasyHigh"></span></button>
+            <button class="modeButton" id="endlessMedium">Endless Medium<br>High: <span id="endlessMediumHigh"></span></button>
+            <button class="modeButton" id="endlessHard">Endless Hard<br>High: <span id="endlessHardHigh"></span></button>
+        </div>
+    </div>
+
+    <div id="game-over" class="hidden">
+        <h1>Game Over!</h1>
+        <p>Score: <span id="final-score">0</span></p>
+
+        <p id="loseReason"></p>
+
+        <div id="playAgain">
+            <h2>Would you like to play again?</h2>
+            <div id="playAgainButtons">
+                <button class="playAgainButton" id="playAgainYes">Yes</button>
+                <button class="playAgainButton" id="playAgainNo">No</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
