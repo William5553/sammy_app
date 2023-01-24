@@ -31,7 +31,7 @@ const loseText = document.querySelector('#loseReason');
 const playAgainButtons = document.querySelectorAll('.playAgainButton');
 
 // gets the high score from local storage
-const fetchHighScore = () => JSON.parse(localStorage.getItem('highScore')) ?? { [currentMode]: 0 };
+const fetchHighScore = () => JSON.parse(localStorage.getItem('highScoreMusa')) ?? { [currentMode]: 0 };
 
 // create a sleep function because javascript doesn't have one
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -62,7 +62,7 @@ const endGame = loseReason => {
   // if there is no high score or the score is higher than the high score, set the high score
   if (!highScore[currentMode] || score > highScore[currentMode]) {
     highScore[currentMode] = score;
-    localStorage.setItem('highScore', JSON.stringify(highScore));
+    localStorage.setItem('highScoreMusa', JSON.stringify(highScore));
   }
   openMenu(gameOverMenu); // open the game over screen
 };
@@ -149,7 +149,7 @@ modeButtons.forEach(button => {
   const highScore = fetchHighScore();
   if (!highScore[button.id] || Number.isNaN(highScore[button.id])) {
     highScore[button.id] = 0;
-    localStorage.setItem('highScore', JSON.stringify(highScore));
+    localStorage.setItem('highScoreMusa', JSON.stringify(highScore));
   }
   // set the high score text
   document.querySelector(`#${button.id}High`).textContent = highScore[button.id];
