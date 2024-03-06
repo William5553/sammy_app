@@ -1,0 +1,106 @@
+body {
+	background-color: var(--bs-dark, #212529);
+	color: #fff;
+	overflow-x: hidden;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Fredoka One', cursive, sans-serif;
+	padding-top: 1rem;
+	font-size: 4rem;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.bubble {
+	margin-bottom: 12px;
+}
+
+.bubble h2 {
+	text-align: center;
+	font-family: "League Gothic", Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+	background: #eee;
+	color: #000;
+	font-size: 24px;
+	letter-spacing: 1px;
+	position: relative;
+	padding: 8px 12px;
+}
+
+.bubble h2::after {
+	top: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	position: absolute;
+	border-color: rgba(255, 0, 0, 0);
+	border-width: 8px;
+	margin-left: -8px;
+	border-top-color: #eee;
+}
+
+#trailer,
+#reviews,
+#screenshots,
+#description {
+	padding-top: 3.5rem;
+}
+
+#reviews {
+	margin-bottom: 4rem;
+}
+
+p,
+span {
+	font-family: 'Comic Sans MS', sans-serif;
+}
+
+footer {
+	background-color: var(--bs-light, #f8f9fa);
+	padding: 1rem;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 3px solid #dee2e6;
+	color: #6c757d;
+}
+
+#reviewContent {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	margin-left: 2rem;
+	margin-right: 2rem;
+}
+
+.review {
+	background-color: #fff;
+	color: #000;
+	padding: 1rem;
+	border-radius: 7px;
+}
+
+#descriptionContent {
+	margin-left: 6rem;
+	margin-right: 6rem;
+	font-size: 1.2rem;
+}
+
+#easter-egg {
+	font-size: 0.4rem;
+}
+
+#easter-egg:hover {
+	cursor: pointer;
+}
